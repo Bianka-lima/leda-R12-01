@@ -84,19 +84,49 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	 * para subir os elementos na heap.
 	 */
 	private void heapify(int position) {
-		if (position < index && position <= 0) {
+		
+		if ((position >= 0) && (position <= index)) {
+		
+			int left = left(position);
+			int right = right(position);
+			int best = position;
+		
+			if (left <= index && comparator.compare(this.heap[left], this.heap[best]) > 0) {
+				best = left;
+			}
+			
+			if (right <= index && comparator.compare(this.heap[right], this.heap[best]) > 0) {
+				best = right;
+			}
 
-			int index_min =
+			if (best != position) {
+				Util.swap(this.heap, position, best);
+				heapify(best);
+			}
 		}
 	}
 
-	private int minIndex(int index, int left, int right) {
-		int min = 
-		if (Math.min(this.heap[left], this.heap[right]) == this.heap[left]) {
+	private void heapifyMax(int position) {
+		
+		if ((position >= 0) && (position < index)) {
+		
+			int left = left(position);
+			int right = right(position);
+			int maior = position;
+		
+			if (left <= index && this.heap[left].compareTo(this.heap[maior]) > 0) {
+				maior = left;
+			}
+			
+			if(right <= index && this.heap[right].compareTo(this.heap[maior]) > 0) {
+				maior = right;
+			}
 
+			if (maior != position) {
+				Util.swap(this.heap, position, maior);
+				heapifyMax(maior);
+			}
 		}
-		min = Math.min(this.heap[min], this.heap[index]);
-		return min;
 	}
 
 	@Override
@@ -107,43 +137,83 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 		}
 		// /////////////////////////////////////////////////////////////////
 		index++;
-		this.heap[index] = element;
 
-		while (index > 0 && this.heap[parent(index)].compareTo(this.heap[index]) > 0) {
-			T aux = this.heap[index];
-			this.heap[index] = this.heap[parent(index)];
-			this.heap[parent(index)] = aux;
-			index = parent(index); 
+		int i = index;
+		this.heap[i] = element;
+
+		while (i > 0 && comparator.compare(this.heap[parent(i)], this.heap[i]) < 0) {
+			Util.swap(this.heap, i, parent(i));
+			i = parent(i); 
 		}
 	}
 
 	@Override
 	public void buildHeap(T[] array) {
+	
+		this.heap = Arrays.copyOf(array, array.length);
 		
+		index = array.length -1;
+
+		for (int i = index/2; i >= 0; i--) {
+			heapify(i);
+		}
+	}
+
+	private void buildMaxHeap(T[] array) {
+		
+		this.heap = Arrays.copyOf(array, array.length);
+		
+		index = array.length -1;
+
+		for (int i = index/2; i >= 0; i--) {
+			heapifyMax(i);
+		}
 	}
 
 	@Override
 	public T extractRootElement() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T element = null;
+		if (index >= 0) {
+			element = this.heap[0];
+			Util.swap(this.heap, 0, index);
+			index--;
+			heapify(0);
+		}
+		return element;
 	}
 
 	@Override
 	public T rootElement() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T element = null;
+		
+		if (index >= 0) {
+			element = this.heap[0];
+		}
+
+		return element;
 	}
 
 	@Override
 	public T[] heapsort(T[] array) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+
+		buildMaxHeap(array);
+
+		//int tamanhoHeap = index;
+
+		while (index >= 0) {
+			Util.swap(this.heap, 0, index);
+			index--;
+			heapifyMax(0);
+		}
+
+		//index = tamanhoHeap;
+
+		return this.heap;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return index +  1;
 	}
 
 	public Comparator<T> getComparator() {
