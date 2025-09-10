@@ -61,8 +61,8 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="adt.heap.StudentMaxHeapTest" name="testBuild" time="0.006"/>
-  <testcase classname="adt.heap.StudentMaxHeapTest" name="testSort" time="0"/>
+  <testcase classname="adt.heap.StudentMaxHeapTest" name="testBuild" time="0.005"/>
+  <testcase classname="adt.heap.StudentMaxHeapTest" name="testSort" time="0.001"/>
   <testcase classname="adt.heap.StudentMaxHeapTest" name="testInsert" time="0"/>
   <testcase classname="adt.heap.StudentMaxHeapTest" name="testRemove" time="0"/>
 </testsuite>
