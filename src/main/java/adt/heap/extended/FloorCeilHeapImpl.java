@@ -19,21 +19,14 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 			for (int i = 0; i < array.length; i++) {
 				insert(array[i]);
 			} 
+			
+			for (int i = 0; i < array.length; i++) {
 
-			boolean exactly = false;
-			for (int i = 0; i < array.length && !exactly; i++) {
-
-				Integer current = rootElement();
+				Integer current = extractRootElement();
 				
-				if (current.equals(numero)) {
-					exactly = true;
+				if (current.doubleValue() <= numero && (num == null || current > num)) {
 					num = current;
 				}
-				if (current < numero && (num == null || current > num)) {
-					num = current;
-				}
-				
-				extractRootElement();
 			}
 		}
 		return num;
@@ -49,20 +42,13 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 				insert(array[i]);
 			}
 
-			boolean exactly = false;
+			for (int i = 0; i < array.length; i++) {
 
-			for (int i = 0; i < array.length && !exactly; i++) {
+				Integer current = extractRootElement();
 
-				Integer current = rootElement();
-
-				if(current.equals(numero)) {
-					exactly= true;
-					ceil = current;
-				} else if (current > numero && (ceil == null || current < ceil)) {
+				if (current.doubleValue() >= numero && (ceil == null || current < ceil)) {
 					ceil = current;
 				}
-
-				extractRootElement();
 			}
 		}
 		return ceil;

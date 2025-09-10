@@ -60,7 +60,7 @@ public class StudentCeilTest {
     @Test
     public void testWithExtremes() {
         Integer[] array = {Integer.MIN_VALUE, 0, Integer.MAX_VALUE};
-        assertEquals(Integer.valueOf(Integer.MIN_VALUE), floorCeil.ceil(array, -1000000));
+        assertEquals(Integer.valueOf(0), floorCeil.ceil(array, -1000000));
         assertEquals(Integer.valueOf(0), floorCeil.ceil(array, -1));
         assertEquals(Integer.valueOf(Integer.MAX_VALUE), floorCeil.ceil(array, Integer.MAX_VALUE));
     }
