@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="adt.heap.StudentMaxHeapTest" time="0.006" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="adt.heap.StudentMaxHeapTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="24.0.1+9-30"/>
@@ -61,8 +61,8 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="adt.heap.StudentMaxHeapTest" name="testBuild" time="0.005"/>
-  <testcase classname="adt.heap.StudentMaxHeapTest" name="testSort" time="0.001"/>
+  <testcase classname="adt.heap.StudentMaxHeapTest" name="testBuild" time="0.004"/>
+  <testcase classname="adt.heap.StudentMaxHeapTest" name="testSort" time="0"/>
   <testcase classname="adt.heap.StudentMaxHeapTest" name="testInsert" time="0"/>
   <testcase classname="adt.heap.StudentMaxHeapTest" name="testRemove" time="0"/>
 </testsuite>
